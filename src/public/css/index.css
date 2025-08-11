@@ -1,0 +1,100 @@
+.header__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border-bottom: solid 2px gainsboro;
+}
+
+.header__logo {
+    color: peru;
+    text-decoration: none;
+    font-family: "Libertinus Serif", serif;
+    font-size: 40px;
+}
+
+.contact-form__content {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+.contact-form__heading {
+    font-family: "Libertinus Serif", serif;
+    font-size: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: peru;
+}
+
+.form {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+}
+
+.form__group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form__label--item {
+    font-family: "Libertinus Serif", serif;
+    color: peru;
+    font-size: 20px;
+}
+
+.form__label--required {
+    color: red;
+}
+
+.form__error {
+    font-family: "Libertinus Serif", serif;
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__input--text {
+    display: flex;
+    gap: 10px;
+}
+
+.form__input--text input,
+.form__input--textarea textarea,
+.form__input--select select {
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 300px;
+    appearance: none;
+}
+
+.form__button {
+    margin-top: 30px;
+}
+
+.form__input--textarea textarea {
+    height: 180px;
+}
+
+.form__group label {
+    margin-right: 20px;
+    color: peru;
+}
+
+input[type="radio"] {
+    accent-color: peru;
+}
+
+.form__button-submit {
+    padding: 10px;
+    width: 20%;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background: peru;
+    color: #fff;
+    cursor: pointer;
+}

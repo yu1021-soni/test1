@@ -1,0 +1,115 @@
+.header__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border-bottom: solid 2px gainsboro;
+}
+
+.header__logo {
+    color: peru;
+    text-decoration: none;
+    font-family: "Libertinus Serif", serif;
+    font-size: 40px;
+}
+
+.confirm__content {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+.confirm__heading {
+    font-family: "Libertinus Serif", serif;
+    font-size: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: peru;
+}
+
+.form {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.confirm-table {
+    border: 1px solid #ddd;
+}
+
+.confirm-table__inner {
+    width: 100%;
+}
+
+.confirm-table__header {
+    font-family: "Libertinus Serif", serif;
+    padding: 15px;
+    width: 20%;
+    border-bottom: 1px solid #ddd;
+    background-color: peru;
+    color: #fff;
+    font-weight: bold;
+}
+
+.name-inline {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.name-inline input {
+    width: auto !important;
+    display: inline-block;
+}
+
+.confirm-table__text {
+    font-family: "Libertinus Serif", serif;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.confirm-table__text input {
+    width: 100%;
+    color: peru;
+    outline: none;
+    border: none;
+}
+
+.confirm-table__row:last-child .confirm-table__header,
+.confirm-table__row:last-child .confirm-table__text {
+    border-bottom-width: 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.inline-form {
+    display: inline-block;
+}
+
+.form__button-submit{
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    border: none;
+    background: peru;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.correction {
+    display: inline-block;
+    width: 120px;
+    background: none;
+    border: none;
+    padding: 0;
+    color: peru;
+    text-decoration: underline;
+    font-size: 16px;
+}

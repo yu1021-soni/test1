@@ -14,13 +14,39 @@ class ContactController extends Controller
     }
 
     public function confirm(ContactRequest $request){
-        $contact = $request->only(['last_name','first_name']);
+        $contact = $request->only([
+            'category_id',
+            'last_name',
+            'first_name',
+            'gender',
+            'email',
+            'tel',
+            'address',
+            'building',
+            'select',
+            'detail'
+        ]);
         return view('confirm',compact('contact'));
     }
 
     public function store(ContactRequest $request){
-        $contact = $request->only(['last_name','first_name']);
+        $contact = $request->only([
+            'last_name',
+            'first_name',
+            'gender',
+            'email',
+            'tel',
+            'address',
+            'building',
+            'select',
+            'detail'
+        ]);
         Contact::create($contact);
         return view('thanks');
+    }
+
+    public function back(Request $request){
+    // 入力データを old() にセットして index.blade.php に戻す
+    return redirect('/')->withInput($request->all());
     }
 }
