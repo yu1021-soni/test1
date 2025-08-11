@@ -37,6 +37,12 @@
             </div>
             <div class="form__error">
               <!--バリデーション機能を実装したら記述します。-->
+              @error('last_name')
+               {{ $message }}
+              @enderror
+              @error('first_name')
+               {{ $message }}
+              @enderror
             </div>
           </div>
         </div>

@@ -23,26 +23,33 @@
         <h2>confirm</h2>
       </div>
 
-      <form action="" class="form">
+      <form action="/thanks" class="form" method="post">
+        @csrf
         <div class="confirm-table">
-            <table class="confirm-table__inner">
+          <table class="confirm-table__inner">
 
-              <tr class="confirm-table__row">
-                <th class="confirm-table__header">お名前</th>
+            <tr class="confirm-table__row">
+              <th class="confirm-table__header">お名前</th>
                 <td class="confirm-table__text">
                   <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly />
                   <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly />
                 </td>
-              </tr>
+            </tr>
               
-            </table>
+          </table>
         </div>
-      </form>
-    </div>
 
-    <div class="form__button">
+        <div class="form__button">
           <button class="form__button-submit" type="submit">送信</button>
-    </div>
+        </div>
+
+        <!--
+        <div class="correction__button">
+          <button class="correction__button-submit" type="submit">修正</button>
+        </div>
+         -->
+        
+      </form>
 
 
   </main>
