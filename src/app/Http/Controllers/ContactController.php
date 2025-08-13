@@ -49,4 +49,16 @@ class ContactController extends Controller
     // 入力データを old() にセットして index.blade.php に戻す
     return redirect('/')->withInput($request->all());
     }
+
+    public function admin(Request $request){
+    $filters = $request->only(['keyword','gender','content','date']);
+
+    $contacts = Contact::with('category')
+        ->filter($filters)           // ← モデル側のスコープ
+        ->orderByDesc('created_at')
+        ->paginate(7)
+        ->withQueryString();
+
+    return view('admin', compact('contacts'));
+    }
 }
