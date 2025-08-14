@@ -12,25 +12,17 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Contracts\RegisterResponse;
-use Illuminate\Support\Facades\Auth;
 
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
@@ -38,9 +30,13 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
+        // ビュー（重複させず統一）
+        Fortify::loginView(fn () => view('auth.login'));
+        Fortify::registerView(fn () => view('auth.register'));
+
+        // レート制限
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
-
             return Limit::perMinute(5)->by($throttleKey);
         });
 
@@ -48,22 +44,16 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // 登録画面
-        \Laravel\Fortify\Fortify::registerView(fn () => view('auth.register'));
-
-        // ログイン画面
-        \Laravel\Fortify\Fortify::loginView(fn () => view('auth.login'));
-
         // ログイン後は /admin
         $this->app->singleton(LoginResponse::class, function () {
-        return new class implements LoginResponse {
-            public function toResponse($request){
-                return redirect('/admin');
+            return new class implements LoginResponse {
+                public function toResponse($request) {
+                    return redirect('/admin');
                 }
             };
         });
 
-        // ログアウト後は /login へ
+        // ログアウト後は /login
         $this->app->singleton(LogoutResponse::class, function () {
             return new class implements LogoutResponse {
                 public function toResponse($request) {

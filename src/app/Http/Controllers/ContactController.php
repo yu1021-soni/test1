@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
+use App\Http\Requests\LoginRequest;
 
 use Illuminate\Http\Request;
 
@@ -48,6 +49,10 @@ class ContactController extends Controller
     public function back(Request $request){
     // 入力データを old() にセットして index.blade.php に戻す
     return redirect('/')->withInput($request->all());
+    }
+
+    public function login(LoginRequest $request){
+        
     }
 
     public function admin(Request $request){
