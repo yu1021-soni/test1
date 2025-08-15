@@ -18,7 +18,7 @@
 
             @auth
             {{-- ↓ ログアウト（POST） --}}
-            <a href="{{ route('logout') }}" class="header__login"
+            <a href="{{ route('logout') }}" class="header__logout"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 logout
             </a>
@@ -30,6 +30,10 @@
     </header>
 
     <main>
+    <div class="contents">
+        <div class="search-form__heading">
+            <h2>Admin</h2>
+        </div>
         <form action="{{ route('admin') }}" class="search-form" method="get">
         <div class="search__group">
             <div class="search__input--text">
@@ -68,12 +72,10 @@
 
             <table class="contact__group-table">
                 <tr class="contact__group-header">
-                    <div class="contact__group-header-title">
                         <th>お名前</th>
                         <th>性別</th>
                         <th>メールアドレス</th>
                         <th>お問い合わせの種類</th>
-                    </div>
                 </tr>
                 @foreach ($contacts as $contact)
                 <tr class="contact__group-contents">
@@ -105,7 +107,7 @@
             {{ $contacts->links() }}
 
         </div>
-
+    </div>
     </main>
 
 
@@ -146,9 +148,10 @@
                 <form action="{{ route('contacts.destroy', $openContact->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                 @csrf
                 @method('DELETE')
-                    <button type="submit" class="button__delete">削除</button>
+                    <div class="modal__action">
+                        <button type="submit" class="button__delete">削除</button>
+                    </div>
                 </form>
-                <a class="btn" href="{{ route('admin', request()->except('modal')) }}">閉じる</a>
             </div>
         </div>
     </div>

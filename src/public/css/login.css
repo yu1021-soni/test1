@@ -1,0 +1,107 @@
+.header__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border-bottom: solid 2px gainsboro;
+}
+
+.header__logo {
+    position: relative;
+    color: peru;
+    text-decoration: none;
+    font-family: "Libertinus Serif", serif;
+    font-size: 40px;
+}
+
+.header__register {
+    position: absolute;
+    color: papayawhip;
+    text-decoration: none;
+    border: 1px solid papayawhip;
+    padding: 5px 20px;
+    font-family: "Libertinus Serif", serif;
+    font-size: 20px;
+    right: 60px;
+    top: 50px;
+    transform: translateY(-50%);
+}
+
+.login {
+    margin: 0 auto;
+    max-width: 1230px;
+}
+
+.login-form__content {
+    height: 100vh;
+    background-color: papayawhip;
+}
+
+.login-form__content h2 {
+    margin-top: 0;
+    padding-top: 50px;
+    font-family: "Libertinus Serif", serif;
+    color: peru;
+}
+
+.login-form__heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.form {
+    margin: 0 auto;
+    width: 40%;
+    background-color: white;
+    padding: 50px 50px;
+    border: 1px solid peru;
+}
+
+.login__group {
+    width: 100%;
+}
+
+.login__group-title {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.login__label--item {
+    font-family: "Libertinus Serif", serif;
+    color: peru;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.login__input--text input{
+    width: 100%;
+    height: 40px;
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    padding: 10px;
+    appearance: none;
+}
+
+.login__button {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.login__button-submit {
+    padding: 10px;
+    width: 30%;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+    background: peru;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login__error {
+    grid-column: 2;
+    font-size: 12px;
+    font-family: "Libertinus Serif", serif;
+    color: red;
+    padding: 10px;
+}
