@@ -21,6 +21,7 @@ class ContactFactory extends Factory
             'email' => $this->faker->email,
             'tel' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
+            'building' => $this->faker->secondaryAddress(),
             'detail' => $this->faker->sentence,
         ];
     }

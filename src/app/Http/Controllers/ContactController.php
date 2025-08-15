@@ -32,6 +32,7 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request){
         $contact = $request->only([
+            'category_id',
             'last_name',
             'first_name',
             'gender',
@@ -39,7 +40,6 @@ class ContactController extends Controller
             'tel',
             'address',
             'building',
-            'select',
             'detail'
         ]);
         Contact::create($contact);
@@ -51,19 +51,32 @@ class ContactController extends Controller
     return redirect('/')->withInput($request->all());
     }
 
-    public function login(LoginRequest $request){
-        
-    }
-
     public function admin(Request $request){
     $filters = $request->only(['keyword','gender','content','date']);
 
     $contacts = Contact::with('category')
-        ->filter($filters)           // ← モデル側のスコープ
+        ->filter($filters)
         ->orderByDesc('created_at')
         ->paginate(7)
         ->withQueryString();
+    
+    // ① ?modal=ID を拾う
+    $openId = (int) $request->input('modal');
 
-    return view('admin', compact('contacts'));
+    // ② その1件だけ取得（なければ null）
+    $openContact = $openId ? Contact::with('category')->find($openId) : null;
+
+    // ③ “今のページに見えている行”以外のIDだったら開かない（任意のガード）
+    if ($openContact && !$contacts->getCollection()->contains('id', $openId)) {
+        $openContact = null;
+    }
+
+    return view('admin', compact('contacts','openContact'));
+    }
+
+
+    public function destroy(Contact $contact){
+    $contact->delete();
+    return redirect('admin');
     }
 }

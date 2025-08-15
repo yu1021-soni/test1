@@ -20,3 +20,6 @@ Route::post('/contacts/thanks',[ContactController::class,'store']);
 Route::post('/contacts/back', [ContactController::class, 'back'])->name('contacts.back');
 
 Route::get('/admin',[ContactController::class,'admin'])->middleware(['auth'])->name('admin');
+
+
+Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
