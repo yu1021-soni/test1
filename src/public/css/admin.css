@@ -137,12 +137,14 @@
     margin: 8px 0 24px;
     font-family: "Libertinus Serif", serif;
     text-align: center;
-    color: var(--brand);
+    color: peru;
 }
 
 /* ===== 検索フォーム ===== */
 .search__group {
+    font-family: "Libertinus Serif", serif;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
     align-items: center;
@@ -154,8 +156,7 @@
 .search__group input[type="date"] {
     height: 40px;
     padding: 0 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    border: 1px solid #d9c6b5;
     background: #f4f1ec;
     outline: none;
 }
@@ -178,113 +179,80 @@
 }
 
 .search__input--button-search {
+    font-family: "Libertinus Serif", serif;
     height: 40px;
     padding: 0 18px;
-    border: 1px solid #6e5a49;
-    border-radius: 8px;
-    background: var(--brand);
+    border: none;
+    background: peru;
     color: #fff;
+    border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.search__input--button-search:hover {
-    background: var(--brand-2);
-}
-
-.btn-reset {
+.button-reset {
+    font-family: "Libertinus Serif", serif;
     display: inline-block;
     height: 40px;
     line-height: 40px;
     padding: 0 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: #fff;
-    color: var(--muted);
+    border: none;
+    background: papayawhip;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
     text-decoration: none;
 }
 
-/* ===== テーブル ===== */
+.list-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-export {
+    font-family: "Libertinus Serif", serif;
+    text-decoration: none;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 14px;
+    background-color: #f4f1ec;
+    color: #d9c6b5;
+}
+
 .contact__group-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
     background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
+    border: 1px solid peru;
 }
 
-/* ヘッダ行（帯） */
 .contact__group-header th {
-    background: var(--head);
+    font-family: "Libertinus Serif", serif;
+    background: peru;
     color: #fff;
-    font-weight: 700;
+    font-weight: bold;
     text-align: left;
-    padding: 12px 14px;
-    border-right: 1px solid rgba(255, 255, 255, .25);
+    font-size: 20px;
+    padding: 15px 0px 15px 20px;
 }
 
-.contact__group-header th:last-child {
-    border-right: none;
-}
-
-/* 行 */
 .contact__group-contents td {
+    font-family: "Libertinus Serif", serif;
     padding: 14px;
-    border-top: 1px solid #f2ece6;
-    color: var(--ink);
+    border-top: 1px solid peru;
+    color: peru;
 }
 
-.contact__group-contents:hover td {
-    background: #faf6f2;
-}
-
-/* 詳細ボタン（右端） */
 .contact__group-contents td:last-child {
     text-align: right;
 }
 
-.btn-detail {
+.button-detail {
     display: inline-block;
     padding: 6px 10px;
     font-size: 13px;
-    background: var(--chip);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--brand);
+    border: solid #d9c6b5;
+    border-radius: 1px;
+    color: #d9c6b5;
     text-decoration: none;
-}
-
-.btn-detail:hover {
-    filter: brightness(.97);
-}
-
-/* ===== ページネーション（Laravel標準ulに効く） ===== */
-.pagination {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    padding: 14px 0;
-}
-
-.pagination li {
-    list-style: none;
-}
-
-.pagination a,
-.pagination span {
-    display: inline-block;
-    min-width: 32px;
-    padding: 6px 10px;
-    text-align: center;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    text-decoration: none;
-    color: var(--ink);
-}
-
-.pagination .active span {
-    background: var(--brand);
-    color: #fff;
-    border-color: #6e5a49;
 }

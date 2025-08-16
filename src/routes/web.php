@@ -23,3 +23,5 @@ Route::get('/admin',[ContactController::class,'admin'])->middleware(['auth'])->n
 
 
 Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+
+Route::get('/contacts/export',[ContactController::class,'export'])->name('contacts.export');

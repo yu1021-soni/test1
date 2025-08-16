@@ -10,6 +10,7 @@
   
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body>
     <header class="header">
@@ -63,10 +64,23 @@
             </div>
             <div class="search__input--button">
                 <button class="search__input--button-search">検索</button>
-                <a href="{{ route('admin') }}" class="btn-reset">リセット</a>
+                <a href="{{ route('admin') }}" class="button-reset">リセット</a>
             </div>
         </div>
         </form>
+
+        <div class="list-toolbar">
+            <a class="button-export" href="{{ route('contacts.export', request()->except('modal')) }}">
+                エクスポート
+            </a>
+
+            <div class="list-pagination">
+                {{ $contacts
+                    ->onEachSide(1)
+                    ->appends(collect(request()->query())->except('modal')->toArray())
+                    ->links('vendor.pagination.custom') }}
+            </div>
+        </div>
 
         <div class="contact__group">
 
@@ -76,6 +90,7 @@
                         <th>性別</th>
                         <th>メールアドレス</th>
                         <th>お問い合わせの種類</th>
+                        <th></th>
                 </tr>
                 @foreach ($contacts as $contact)
                 <tr class="contact__group-contents">
@@ -99,13 +114,11 @@
                     </td>
                     <td>
                     {{-- 現在の検索クエリを維持しつつ modal=ID を付与 --}}
-                        <a class="btn-detail" href="{{ route('admin', array_merge(request()->query(), ['modal' => $contact->id])) }}">詳細</a>
+                        <a class="button-detail" href="{{ route('admin', array_merge(request()->query(), ['modal' => $contact->id])) }}">詳細</a>
                     </td>
                 </tr>
                 @endforeach
             </table>
-            {{ $contacts->links() }}
-
         </div>
     </div>
     </main>

@@ -1,0 +1,45 @@
+/* pagination 全体 */
+.pagination {
+    gap: 8px;
+    margin: 16px 0 24px;
+    user-select: none;
+}
+
+/* 数字ボタン */
+.pagination__item {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #6b6b6b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* 現在ページ（見本の濃いブラウン系） */
+.pagination__item.is-active {
+    background: #9a8268;
+    border-color: #9a8268;
+    color: #fff;
+}
+
+
+/* 矢印 */
+.pagination__arrow {
+    display: inline-block;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    color: #6b6b6b;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 0 6px;
+}
