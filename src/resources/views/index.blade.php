@@ -28,7 +28,7 @@
         <h2>Contact</h2>
       </div>
 
-    <form action="/contacts/confirm" class="form" method="post">
+    <form action="{{ route('contacts.confirm') }}" class="form" method="post">
         @csrf
         <div class="form__group">
           <div class="form__group-title">

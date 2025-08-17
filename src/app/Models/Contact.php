@@ -73,7 +73,7 @@ class Contact extends Model
         $genderLabel = $this->gender == 1 ? '男性' : ($this->gender == 2 ? '女性' : 'その他');
         return [
         $this->id,
-        $this->full_name,   //アクセサ
+        $this->full_name,//アクセサ
         $genderLabel,
         $this->email,
         $this->category->content ?? '',

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\LoginRequest;
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -13,12 +13,12 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class ContactController extends Controller
 {
     public function index(){
-        return view ('index');
+        $categories = Category::orderBy('id')->get();
+        return view('index', compact('categories'));
     }
 
     public function confirm(ContactRequest $request){
         $contact = $request->only([
-            'category_id',
             'last_name',
             'first_name',
             'gender',
@@ -26,9 +26,14 @@ class ContactController extends Controller
             'tel',
             'address',
             'building',
-            'select',
-            'detail'
+            'detail',
+            'select'
         ]);
+        $label = $contact['select'];
+        $categoryId = Category::where('content', $label)->value('id');
+        
+        $contact['category_id']    = $categoryId;
+        $contact['category_label'] = $contact['select'];
         return view('confirm',compact('contact'));
     }
 
@@ -93,7 +98,7 @@ class ContactController extends Controller
         ->filter($filters)
         ->orderBy('id');
     $headers = [
-        'Content-Type' => 'text/csv; charset=UTF-8',
+        'Content-Type'        => 'text/csv; charset=UTF-8',
         'Content-Disposition' => "attachment; filename=\"{$fileName}\"",
     ];
 
@@ -105,6 +110,7 @@ class ContactController extends Controller
 
         // 見出し行
         fputcsv($out, ['ID','お名前','性別','メールアドレス','お問い合わせの種類','作成日']);
+
         $base->chunkById(1000, function ($rows) use ($out) {
             foreach ($rows as $r) {
                 $genderLabel = $r->gender == 1 ? '男性' : ($r->gender == 2 ? '女性' : 'その他');
@@ -120,7 +126,7 @@ class ContactController extends Controller
                     optional($r->created_at)->format('Y-m-d H:i:s'),
                 ]);
             }
-            fflush($out);
+            fflush($out); // こまめにフラッシュ
         });
 
         fclose($out);

@@ -67,11 +67,24 @@
     border-bottom: 1px solid #ddd;
 }
 
-.confirm-table__text input {
+.confirm-table__inner tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.confirm-table__inner th {
+    font-family: "Libertinus Serif", serif;
+    background-color: peru;
+    color: #fff;
+    padding: 15px;
+}
+
+.confirm-table__inner input {
+    font-family: "Libertinus Serif", serif;
     width: 100%;
     color: peru;
     outline: none;
     border: none;
+    padding-left: 20px;
 }
 
 .confirm-table__row:last-child .confirm-table__header,
@@ -80,20 +93,25 @@
 }
 
 .button-group {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    text-align: center;
     margin-top: 24px;
+}
+
+.confirm__content {
+    text-align: center;
 }
 
 .inline-form {
     display: inline-block;
+    vertical-align: middle;
+    margin-top: -64px;
+    transform: translateX(68px);
 }
 
-.form__button-submit{
+.form__button-submit {
     display: inline-block;
-    width: 120px;
+    width: 100px;
     height: 40px;
     border: none;
     background: peru;
@@ -105,11 +123,11 @@
 
 .correction {
     display: inline-block;
-    width: 120px;
     background: none;
     border: none;
     padding: 0;
     color: peru;
     text-decoration: underline;
     font-size: 16px;
+    margin-left: 30px;
 }

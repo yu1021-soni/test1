@@ -26,86 +26,89 @@
         <h2>confirm</h2>
       </div>
 
-      <form action="/contacts/thanks" class="form" method="post">
-        @csrf
+      <form action="{{ url('/contacts/thanks') }}" method="post" class="form">
+      @csrf
+
         <div class="confirm-table">
           <table class="confirm-table__inner">
-
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お名前</th>
-                <td class="confirm-table__text">
-                  <div class="name-inline">
-                    <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly />
-                    <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly />
-                  </div>
-                </td>
+            <tr>
+              <th>お名前</th>
+              <td>
+                <div class="name-inline">
+                  <input type="text" value="{{ $contact['last_name'] }}" readonly>
+                  <input type="text" value="{{ $contact['first_name'] }}" readonly>
+                </div>
+                <input type="hidden" name="last_name"  value="{{ $contact['last_name'] }}">
+                <input type="hidden" name="first_name" value="{{ $contact['first_name'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">性別</th>
-                <td class="confirm-table__text">
-                  @php
-                    $genderText = [
-                      1 => '男性',
-                      2 => '女性',
-                      3 => 'その他'
-                    ][$contact['gender']] ?? '';
-                  @endphp
-                  <input type="text" value="{{ $genderText }}" readonly>
-                  <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
-                </td>
+            <tr>
+              <th>性別</th>
+              <td>
+                @php
+                $genderText = [1=>'男性',2=>'女性',3=>'その他'][$contact['gender']] ?? '';
+                @endphp
+                <input type="text" value="{{ $genderText }}" readonly>
+                <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">メールアドレス</th>
-                <td class="confirm-table__text">
-                  <input type="text" name="email" value="{{ $contact['email'] }}" readonly />
-                </td>
+            <tr>
+              <th>メールアドレス</th>
+              <td>
+              <input type="text" value="{{ $contact['email'] }}" readonly>
+              <input type="hidden" name="email" value="{{ $contact['email'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">電話番号</th>
-                <td class="confirm-table__text">
-                  <input type="text" name="tel" value="{{ $contact['tel'] }}" readonly />
-                </td>
+            <tr>
+              <th>電話番号</th>
+              <td>
+              <input type="text" value="{{ $contact['tel'] }}" readonly>
+              <input type="hidden" name="tel" value="{{ $contact['tel'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">住所</th>
-                <td class="confirm-table__text">
-                  <input type="text" name="address" value="{{ $contact['address'] }}" readonly />
-                </td>
+            <tr>
+              <th>住所</th>
+              <td>
+                <input type="text" value="{{ $contact['address'] }}" readonly>
+                <input type="hidden" name="address" value="{{ $contact['address'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">建物名</th>
-                <td class="confirm-table__text">
-                  <input type="text" name="building" value="{{ $contact['building'] }}" readonly />
-                </td>
+            <tr>
+              <th>建物名</th>
+              <td>
+              <input type="text" value="{{ $contact['building'] }}" readonly>
+              <input type="hidden" name="building" value="{{ $contact['building'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お問い合わせの種類</th>
-                <td class="confirm-table__text">
-                  <input type="text" name="select" value="{{ $contact['select'] }}" readonly />
-                </td>
+            <tr>
+              <th>お問い合わせの種類</th>
+              <td>
+                <input type="text" value="{{ $contact['category_label'] }}" readonly>
+                <input type="hidden" name="category_id" value="{{ $contact['category_id'] }}">
+                <input type="hidden" name="select" value="{{ $contact['select'] }}">
+              </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お問い合わせ内容</th>
-                <td class="confirm-table__text">
-                  <input type="text" name="detail" value="{{ $contact['detail'] }}" readonly />
-                </td>
+            <tr>
+              <th>お問い合わせ内容</th>
+              <td>
+                <input type="text" value="{{ $contact['detail'] }}" readonly>
+                <input type="hidden" name="detail" value="{{ $contact['detail'] }}">
+              </td>
             </tr>
-
           </table>
         </div>
+
         <div class="button-group">
-          <form action="/contacts/thanks" class="inline-form" method="post">
-            @csrf
-            <button class="form__button-submit" type="submit">送信</button>
-          </form>
-          <form action="{{ route('contacts.back') }}" method="post" class="inline-form">
-            @csrf
-            @foreach($contact as $key => $value)
-              <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-            @endforeach
-            <button type="submit" class="correction">修正</button>
-          </form>
+          <button class="form__button-submit" type="submit">送信</button>
         </div>
+      </form>
+      <form action="{{ route('contacts.back') }}" method="post" class="inline-form">
+        @csrf
+        @foreach($contact as $k => $v)
+        <input type="hidden" name="{{ $k }}" value="{{ $v }}">
+        @endforeach
+        <button type="submit" class="correction">修正</button>
+      </form>
     </main>
 </body>
 
