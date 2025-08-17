@@ -93,16 +93,11 @@
 
           </table>
         </div>
-
-        {{-- ボタンを横並びにするラッパー --}}
         <div class="button-group">
-          {{-- 送信フォーム（この中に入力値があるので hidden は不要） --}}
           <form action="/contacts/thanks" class="inline-form" method="post">
             @csrf
             <button class="form__button-submit" type="submit">送信</button>
           </form>
-
-          {{-- 修正（index に戻る／値保持）フォーム --}}
           <form action="{{ route('contacts.back') }}" method="post" class="inline-form">
             @csrf
             @foreach($contact as $key => $value)
@@ -111,10 +106,7 @@
             <button type="submit" class="correction">修正</button>
           </form>
         </div>
-...
-
     </main>
-
 </body>
 
 </html>

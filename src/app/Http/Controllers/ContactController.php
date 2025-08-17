@@ -49,7 +49,8 @@ class ContactController extends Controller
     }
 
     public function back(Request $request){
-    // 入力データを old() にセットして index.blade.php に戻す
+    // withInput
+    // ユーザーが入力した値を保持→リダイレクト先のページで再度フォームを表示する
     return redirect('/')->withInput($request->all());
     }
 
@@ -57,18 +58,18 @@ class ContactController extends Controller
     $filters = $request->only(['keyword','gender','content','date']);
 
     $contacts = Contact::with('category')
-        ->filter($filters)
-        ->orderByDesc('created_at')
+        ->filter($filters)//特定の条件を満たす値を取り出す
         ->paginate(7)
         ->withQueryString();
+        //現在のデータを維持したままページネーションリンクに引き継ぐ
 
-    // ① ?modal=ID を拾う
+    //?modal=ID を拾う
     $openId = (int) $request->input('modal');
 
-    // ② その1件だけ取得（なければ null）
+    //その1件だけ取得（なければ null）
     $openContact = $openId ? Contact::with('category')->find($openId) : null;
 
-    // ③ “今のページに見えている行”以外のIDだったら開かない（任意のガード）
+    //“今のページに見えている行”以外のIDだったら開かない（任意のガード）
     if ($openContact && !$contacts->getCollection()->contains('id', $openId)) {
         $openContact = null;
     }
@@ -90,23 +91,20 @@ class ContactController extends Controller
     // 一覧と同じ条件で取得（カテゴリ情報も一緒に）
     $base = Contact::with('category')
         ->filter($filters)
-        ->orderBy('id'); // chunkByIdに備えて昇順
-
+        ->orderBy('id');
     $headers = [
-        'Content-Type'        => 'text/csv; charset=UTF-8',
+        'Content-Type' => 'text/csv; charset=UTF-8',
         'Content-Disposition' => "attachment; filename=\"{$fileName}\"",
     ];
 
     return response()->streamDownload(function () use ($base) {
         $out = fopen('php://output', 'w');
 
-        // Excel文字化け対策：UTF-8 BOM
+        // Excel文字化け対策
         fwrite($out, "\xEF\xBB\xBF");
 
-        // 見出し行（必要に応じて列を増減）
+        // 見出し行
         fputcsv($out, ['ID','お名前','性別','メールアドレス','お問い合わせの種類','作成日']);
-
-        // 大量データでも安定して出力
         $base->chunkById(1000, function ($rows) use ($out) {
             foreach ($rows as $r) {
                 $genderLabel = $r->gender == 1 ? '男性' : ($r->gender == 2 ? '女性' : 'その他');
@@ -122,7 +120,7 @@ class ContactController extends Controller
                     optional($r->created_at)->format('Y-m-d H:i:s'),
                 ]);
             }
-            fflush($out); // こまめにフラッシュ
+            fflush($out);
         });
 
         fclose($out);

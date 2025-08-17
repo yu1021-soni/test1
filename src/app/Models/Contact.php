@@ -58,25 +58,25 @@ class Contact extends Model
         return $q;
     }
 
-    // ❶ フルネームのアクセサ（$contact->full_name で使える）
+        // フルネームアクセサ（$contact->full_name で使える）
         public function getFullNameAttribute(): string {
         return trim(($this->last_name ?? '') . ' ' . ($this->first_name ?? ''));
         }
 
-        // ❷ CSV のヘッダ行（見出し）をモデルが教える
+        //CSV のヘッダ行（見出し）をモデルが教える
         public static function csvHeader(): array {
         return ['ID', 'お名前', '性別', 'メールアドレス', 'お問い合わせの種類', '作成日'];
         }
 
-        // ❸ 1件分のレコードを CSV 行（配列）に変換
+        // 1件分のデータをCSVにする
         public function toCsvRow(): array {
         $genderLabel = $this->gender == 1 ? '男性' : ($this->gender == 2 ? '女性' : 'その他');
         return [
         $this->id,
-        $this->full_name,                     // ❶ で作ったアクセサ
+        $this->full_name,   //アクセサ
         $genderLabel,
         $this->email,
-        $this->category->content ?? '',       // with('category') 前提
+        $this->category->content ?? '',
         optional($this->created_at)->format('Y-m-d H:i:s'),
         ];
         }

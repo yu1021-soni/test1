@@ -125,14 +125,12 @@
     transform: translateY(-50%);
 }
 
-/* 画面幅 */
 .contents {
     max-width: 1230px;
     margin: 0 auto;
     padding: 24px 16px 64px;
 }
 
-/* ===== 見出し ===== */
 .search-form__heading h2 {
     margin: 8px 0 24px;
     font-family: "Libertinus Serif", serif;
@@ -140,7 +138,6 @@
     color: peru;
 }
 
-/* ===== 検索フォーム ===== */
 .search__group {
     font-family: "Libertinus Serif", serif;
     display: flex;
